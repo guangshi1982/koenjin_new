@@ -35,11 +35,15 @@ exports.purchase = function(req, res) {
   
   gateway.transaction.sale({
     amount: '10.00',
-    //paymentMethodNonce: nonce,
-    //paymemtMethodNonce: braintree.Test.Nonces.Transactable,
-    //paymemtMethodNonce: braintree.Test.Nonces.Consumed,
-    paymemtMethodNonce: braintree.Test.Nonces.PayPalOneTimePayment,
-    //paymemtMethodNonce: braintree.Test.Nonces.PayPalFuturePayment,
+    paymentMethodNonce: nonce
+    //paymemtMethodNonce: braintree.Test.Nonces.Transactable
+    //paymemtMethodNonce: braintree.Test.Nonces.Consumed
+    //paymemtMethodNonce: braintree.Test.Nonces.PayPalOneTimePayment
+    //paymemtMethodNonce: braintree.Test.Nonces.PayPalFuturePayment
   }, function (err, result) {
+  	if (result.success) {
+	  	console.log(result);
+	  	res.send("ok");
+  	}
   });
 };
